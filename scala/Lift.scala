@@ -152,7 +152,8 @@ object Lift {
         formatMatrix(matrix)
           .patch(pos, closedLeft, 1)
           .patch(pos + liftWidth * 2, closedRight, 1)
-    println(result ++ debug(s))
+    print("\033[2J\033[H")
+    println(result)
   }
 
   def openDoors() {
@@ -165,32 +166,8 @@ object Lift {
     drawLift()
   }
 
-  /* def drawLift(string: String) = {
-    var pos = (numFloors - floor - 1) * (floorLength * 2) + liftColIndex * 2 - 1
-    string.patch(pos, closedLeft, 1).patch(pos + liftWidth * 2, closedRight, 1)
-  }
-
-  def openLift(string: String): String = {
-    open = true
-    drawLift(string)
-      .replace(closedLeft, openLeft)
-      .replace(closedRight, openLeft) ++ debug()
-  }
-
-  def closeLift(string: String): String = {
-    open = false
-    drawLift(string)
-      .replaceFirst(openLeft, closedLeft)
-      .replaceFirst(openLeft, closedRight) ++ debug()
-  } */
-
   def debug(s: String = "") = {
     s" $floor: $open, $currentPassengers, $load, $s \n"
-  }
-
-  def slice2D(arr: Array[Array[Int]], row: Int, from: Int, to: Int) = {
-    val range = from until to
-    range.map(col => arr(row)(col))
   }
 
   def nextFreeCol(arr: Array[Array[Int]], row: Int, from: Int): Int = {
